@@ -3,6 +3,7 @@ const router = express.Router();
 
 const User = require('../models/users.js');
 const Daily = require('../models/daily.js');
+const Input = require('../models/input.js');
 
 
 //GET ALL
@@ -59,3 +60,6 @@ router.delete('/:id', async (req, res) => {
     res.status(400).json({err: e.message});
   }
 });
+
+
+module.exports = router;

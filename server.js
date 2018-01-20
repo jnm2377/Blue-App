@@ -1,9 +1,9 @@
 //DEPENDENCIES
 const express = require('express');
-const app = express();
 const mongoose = require('mongoose');
 const session = require('express-session');
 const morgan = require('morgan');
+const app = express();
 require('pretty-error').start();
 
 
@@ -35,7 +35,7 @@ app.use(session({
   secret: gunny,
   resave: false,
   saveUninitialized: false
-}))
+}));
 app.use('/users', userController);
 app.use('/sessions', sessionController);
 app.use('/blue', dailyController);
