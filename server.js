@@ -13,7 +13,7 @@ const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost/blue';
 const gunny = process.env.GUNNY || 'gunny';
 
 //CONNECT TO MONGO
-mongoose.connect(mongoURI, {useMongoCLient: true});
+mongoose.connect(mongoURI);
 const db = mongoose.connection;
 db.on('error', (err) => console.log(err.message, 'is Mongod not running?'));
 db.on('connected', () => console.log('Mongo connected on:', mongoURI));
@@ -24,7 +24,7 @@ mongoose.Promise = global.Promise;
 //REQUIRE CONTROLLERS
 const sessionController = require('./controllers/sessionController.js');
 const userController = require('./controllers/userController.js');
-const dailyController = require('./controllers/dailyController.js');
+// const dailyController = require('./controllers/dailyController.js');
 
 // MIDDLEWARE
 app.use(express.urlencoded({extended: false}));
@@ -38,7 +38,7 @@ app.use(session({
 }));
 app.use('/users', userController);
 app.use('/sessions', sessionController);
-app.use('/blue', dailyController);
+// app.use('/blue', dailyController);
 
 app.get('/:whatever', (req, res) => res.redirect('/'))
 app.get('/:whatever/:whatever', (req, res) => res.redirect('/'))
