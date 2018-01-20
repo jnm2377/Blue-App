@@ -52,8 +52,8 @@ router.put('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   try {
     const deletedUser = await User.findByIdAndRemove(req.params.id);
-    // await Daily.remove({user: deletedUser._id});
-    // await Input.remove({user: deletedUser._id});
+    await Daily.remove({user: deletedUser._id});
+    await Input.remove({user: deletedUser._id});
     req.session.destroy();
     res.status(200).json({message: 'User, Daily entries and all inputs deleted.'});
   } catch (e) {

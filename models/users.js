@@ -4,14 +4,14 @@ const bcrypt = require('bcrypt');
 const userSchema = mongoose.Schema({
   username: { type: String, unique: true, required: true },
   password: { type: String, required: true },
-  email: { type: String, required: true }
+  email: String
 });
 
 //HASHES PASSWORD BEFORE SAVING USER
 userSchema.pre('save', function(next) {
   if(this.isModified('password')) {
     const hashedPass = bcrypt.hashSync(this.password, bcrypt.genSaltSync(10));
-    this.password = hashedSync;
+    this.password = hashedPass;
   }
   next();
 })
