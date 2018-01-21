@@ -12,6 +12,8 @@ router.get('/', async (req, res) => {
     const loggedUser = await User.find({username: req.session.username});
     const userDailies = await Daily.find({user: loggedUser._id})
     res.status(200).json(userDailies);
+    // const allDailies = await Daily.find();
+    // res.status(200).json(allDailies);
   } catch (e) {
     res.status(400).json({err: e.message});
   }
@@ -22,7 +24,7 @@ router.get('/:id', async (req, res) => {
   try {
     const oneDaily = await Daily.findById(req.params.id);
     const dailyInputs = await Input.find({daily: oneDaily._id});
-    res.status(200).json(oneDaily, dailyInputs);
+    res.status(200).json({oneDaily, dailyInputs});
   } catch (e) {
     res.status(400).json({err: e.message});
   }
