@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const morgan = require('morgan');
+const cors = require('cors');
 const app = express();
 require('pretty-error').start();
 
@@ -31,6 +32,7 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 app.use(express.static('public'));
 app.use(morgan('dev'));
+app.use(cors());
 app.use(session({
   secret: gunny,
   resave: false,
@@ -39,8 +41,5 @@ app.use(session({
 app.use('/users', userController);
 app.use('/sessions', sessionController);
 app.use('/blue', dailyController);
-
-app.get('/:whatever', (req, res) => res.redirect('/'))
-app.get('/:whatever/:whatever', (req, res) => res.redirect('/'))
 
 app.listen(PORT, () => console.log('Blue app running on port', PORT));

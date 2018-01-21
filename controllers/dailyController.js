@@ -9,10 +9,10 @@ const Input = require('../models/input.js');
 //GET ALL USER DAILIES
 router.get('/', async (req, res) => {
   try {
-    const loggedUser = await User.find({username: req.session.username});
-    const userDailies = await Daily.find({user: loggedUser._id})
-    res.status(200).json(userDailies);
+    const loggedUser = await User.find({_id: req.session.user._id});
+    const userDailies = await Daily.find({user: loggedUser[0]._id});
     // const allDailies = await Daily.find();
+    res.status(200).json({loggedUser, userDailies});
     // res.status(200).json(allDailies);
   } catch (e) {
     res.status(400).json({err: e.message});

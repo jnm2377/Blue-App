@@ -3,12 +3,55 @@
   <head>
     <meta charset="utf-8">
     <title>Blue</title>
-    <link rel="stylesheet" href="/css/about.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js" charset="utf-8"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.min.js" charset="utf-8"></script>
-  <script type="text/javascript" src="/js/app.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
   </head>
   <body ng-controller="MainController as ctrl">
+
+<!--  LOGIN PAGE -->
+    <div class="loginContainer" ng-if='ctrl.logged === false'>
+      Login
+      <form ng-submit='ctrl.login()'>
+        <input type="text" placeholder="username" ng-model="ctrl.loginForm.username" required/>
+         <input type="password" placeholder="password" ng-model="ctrl.loginForm.password" required/>
+         <input type="submit" />
+      </form>
+
+      Register
+      <form ng-submit='ctrl.register()'>
+        <input type="text" placeholder="username" ng-model="ctrl.regForm.username" required/>
+         <input type="password" placeholder="password" ng-model="ctrl.regForm.password" required/>
+         <input type="submit"/>
+      </form>
+    </div>
+
+
+<!--  INDEX PAGE -->
+    <div class="home" ng-if='ctrl.logged'>
+      <!-- <div class="chart">
+        display chart here
+      </div> -->
+      <h1>Dailies</h1>
+      <div class="dailies" ng-repeat="daily in ctrl.allDailies" ng-click="ctrl.getOneDaily(daily._id)">
+        <p>Date: {{daily.date}} | Goal: {{daily.goal}}oz. | Total intake: {{daily.totalIntake}}oz.</p>
+      </div>
+    </div>
+
+
+<!--  SHOW PAGE -->
+    <div class="showDaily" ng-if='ctrl.clickedDaily'>
+      <!-- <div class="chart">
+        display chart here
+      </div> -->
+      <h2>Goal: {{ctrl.showDaily.goal}}oz</h2>
+      <h2>Total intake: {{ctrl.showDaily.totalIntake}}</h2>
+      <h3>Percentage to goal: {{ctrl.showDaily.percentageToGoal}}</h3>
+
+      <div class="inputs" ng-repeat='input in ctrl.showDailyInputs'>
+        <p>Time: {{input.time}} | Intake: {{input.intake}}oz.</p>
+      </div>
+    </div>
 
   </body>
 </html>

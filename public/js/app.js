@@ -1,4 +1,4 @@
-const app = angular.module('blue_app', ['ngRoute']);
+const app = angular.module('blue_app', []);
 
 app.controller('MainController', ['$http', function($http) {
 
@@ -9,49 +9,55 @@ app.controller('MainController', ['$http', function($http) {
   this.allDailies = [];
   this.showDaily = [];
   this.showDailyInputs = [];
+  this.clickedDaily = false;
 
   //CHECK TO SEE IF USER IS LOGGED IN
   $http({
-    method: 'GET',
+    method: 'get',
     url: '/sessions'
   }).then(response => {
     if (response.data.user) {
       this.user = response.data.user;
+      console.log(this.user);
       this.logged = true;
-    }.catch(err => console.error('Catch:', err));
-  });
+      this.getDailies();
+    }
+  }).catch(err => console.error('Catch:', err));
 
   //LOGIN
-  this.loginUser = () => {
+  this.login = () => {
     $http({
-      method: 'POST',
+      method: 'post',
       url: '/sessions/login',
       data: this.loginForm
     }).then(response => {
       console.log(response.data);
-      // this.user = response.data;
-      // this.logged = true;
+      this.user = response.data;
+      this.logged = true;
+      this.getDailies();
     }).catch(err => console.error('Catch:', err.message));
   }
 
 
   //REGISTER
-  this.registerUser = () => {
+  this.register = () => {
     $http({
-      method: 'POST',
+      method: 'post',
       url: '/users',
       data: this.regForm
     }).then(response => {
       console.log(response.data);
-      // this.user = response.data;
-      // this.logged = true;
+
+      this.user = response.data;
+      this.logged = true;
+      this.getDailies();
     }).catch( err => console.error('Catch:', err.message));
   }
 
   //LOGOUT
   this.logout = () => {
     $http({
-      method: 'DELETE',
+      method: 'delete',
       url: '/sessions/logout'
     }).then(response => {
       this.logged = false;
@@ -62,29 +68,42 @@ app.controller('MainController', ['$http', function($http) {
   //GET USERS DAILIES
   this.getDailies = () => {
     $http({
-      method: 'GET',
+      method: 'get',
       url: '/blue'
     }).then(response => {
-      console.log(response.data);
-      // this.allDailies = response.data;
+      // console.log(response.data);
+      this.allDailies = response.data.userDailies;
     }).catch(err => console.error('Catch:', err));
   }
 
-  this.getDailies();
+
+
+
+
 
   //GET ONE DAILY
   this.getOneDaily = (id) => {
     $http({
-      method: 'GET',
+      method: 'get',
       url: '/blue/' + id
     }).then(response => {
-      console.log(response.data);
-      // this.showDaily = response.data[0];
-      // this.showDailyInputs = response.data[1];
+      // console.log(response.data);
+      this.showDaily = response.data.oneDaily;
+      this.showDailyInputs = response.data.dailyInputs;
+      // console.log('Clicked on this day:', this.showDaily);
+      // console.log('Show Daily data:', this.showDailyInputs);
+      this.clickedDaily = true;
     }).catch(err => console.error('Catch:', err));
   }
 
-  this.getOneDaily();
+  // this.getOneDaily();
 
+
+  // ADD DAILY
+  // ADD INPUT
+  //   W/ NESTED UPDATE DAILY
+  // DELETE INPUT
+  //   W/ NESTED UPDATE DAILY
+  // DELETE DAILY
 
 }]);
