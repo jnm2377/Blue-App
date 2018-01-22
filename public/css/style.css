@@ -25,7 +25,7 @@ button:hover, button:focus {
  }
 
  .table, .form-control {
-   width: 50%;
+   width: 500px;
    margin: auto;
  }
 
@@ -78,6 +78,7 @@ nav {
   text-align: center;
   font-size: 50px;
   height: 100px;
+  border-bottom: 1px dotted  rgba(186, 255, 41, 0.2);
 }
 
 .nav-links > li:hover {
@@ -113,10 +114,10 @@ nav {
 }
 
 .login {
-  width: 50%;
-  margin: 10px auto;
+  width: 500px;
+  margin: 20px auto;
   background: #2A2B2E;
-  border-radius: 5px 5px 0 0;
+  border-radius: 5px;
 }
 
 .login > h1 {
@@ -152,7 +153,6 @@ nav {
 
 .home {
   margin: auto;
-  /* border: 1px solid red; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -177,3 +177,12 @@ nav {
 }
 
 /*==============SHOW PAGE=================  */
+.showTextContainer {
+  width: 500px;
+  margin: 20px auto;
+  color: #BAFF29;
+}
+
+span {
+  color: white;
+}

@@ -9,6 +9,7 @@ app.controller('MainController', ['$http', function($http) {
   this.clickedRegister = false;
   this.logged = false;
   this.home = false;
+  this.clickedInfo = false;
   this.clickedDaily = false;
   this.clickedNav = false;
   this.loginForm = {};
@@ -174,6 +175,22 @@ app.controller('MainController', ['$http', function($http) {
   this.showRegister = () => {
     this.clickedLogin = false;
     this.clickedRegister = true;
+  }
+
+  this.goHome = () => {
+    this.clickedNav = false;
+    this.home = true;
+    this.clickedDaily = false;
+    this.clickedInfo = false;
+
+  }
+
+  this.seeInfo = () => {
+    console.log('Need to create info page');
+    // this.clickedNav = false;
+    // this.home = false;
+    // this.clickedDaily = false;
+    // this.clickedInfo = true;
   }
 
 }]);

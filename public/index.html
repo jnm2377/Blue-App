@@ -21,8 +21,8 @@
         <p ng-click='ctrl.closeNav()'><i class="fa fa-times" aria-hidden="true"></i></p>
       </div>
       <ul class="nav-links">
-        <li>HOME</li>
-        <li>INFO</li>
+        <li ng-click='ctrl.goHome()'>HOME</li>
+        <li ng-click='ctrl.seeInfo()'>INFO</li>
         <li ng-if='ctrl.logged' ng-click='ctrl.logout()'>LOGOUT</li>
       </ul>
     </nav>
@@ -100,9 +100,11 @@
         <div class="chart">
           display chart here
         </div>
-        <h2>Goal: {{ctrl.showDaily.goal}}oz</h2>
-        <h2>Total intake: {{ctrl.showDaily.totalIntake}}</h2>
-        <h3>Percentage to goal: {{ctrl.showDaily.percentageToGoal}}</h3>
+        <div class="showTextContainer">
+          <h2>Goal: <span>{{ctrl.showDaily.goal}}oz</span></h2>
+          <h2>Total intake: <span>{{ctrl.showDaily.totalIntake}}</span></h2>
+          <h3>Percentage to goal: <span>{{ctrl.showDaily.percentageToGoal}}</span></h3>
+        </div>
 
         <form ng-submit="ctrl.createInput()" class="form-group">
           <table class="table table-hover">
