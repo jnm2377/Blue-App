@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Homemade+Apple|Quicksand" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
     <script src="https://use.fontawesome.com/768456e386.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
@@ -30,13 +31,13 @@
 <!--  LOGIN PAGE -->
     <div class="loginPage" ng-if='ctrl.logged === false'>
       <div class="loginContainer">
-        <h1>Welcome to Blue</h1>
+        <h1 class="tracking-in-expand">Welcome to Blue</h1>
         <div class="buttonContainer">
-          <button ng-click='ctrl.showLogin()' class="btn">Login</button>
-          <button ng-click='ctrl.showRegister()' class="btn">Register</button>
+          <button ng-click='ctrl.showLogin()' class="btn slide-in-left">Login</button>
+          <button ng-click='ctrl.showRegister()' class="btn slide-in-right">Register</button>
         </div>
 
-        <div ng-if="ctrl.clickedLogin" class="login">
+        <div ng-if="ctrl.clickedLogin" class="login slide-in-bottom">
           <h1>Login</h1>
           <form ng-submit='ctrl.login()' class="form-group">
             <input class="form-control-sm" type="text" placeholder="username" ng-model="ctrl.loginForm.username" required/>
@@ -45,7 +46,7 @@
           </form>
         </div>
 
-        <div ng-if="ctrl.clickedRegister" class="login register">
+        <div ng-if="ctrl.clickedRegister" class="login register slide-in-bottom">
           <h1>Register</h1>
           <form ng-submit='ctrl.register()' class="form-group">
             <input class="form-control-sm" type="text" placeholder="username" ng-model="ctrl.regForm.username" required/>
