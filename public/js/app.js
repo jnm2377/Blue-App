@@ -148,6 +148,8 @@ app.controller('MainController', ['$http', function($http) {
       totalIntake: this.showDaily.totalIntake,
       percentageToGoal: this.showDaily.percentageToGoal
     }
+
+    console.log('Updated daily:', this.updateDailyForm);
   }
 
 }]);

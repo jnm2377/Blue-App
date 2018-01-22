@@ -3,7 +3,8 @@
   <head>
     <meta charset="utf-8">
     <title>Blue</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
     <link rel="stylesheet" href="css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
@@ -13,17 +14,17 @@
 <!--  LOGIN PAGE -->
     <div class="loginContainer" ng-if='ctrl.logged === false'>
       Login
-      <form ng-submit='ctrl.login()'>
-        <input type="text" placeholder="username" ng-model="ctrl.loginForm.username" required/>
-         <input type="password" placeholder="password" ng-model="ctrl.loginForm.password" required/>
-         <input type="submit" />
+      <form ng-submit='ctrl.login()' class="form-group">
+        <input class="form-control-sm" type="text" placeholder="username" ng-model="ctrl.loginForm.username" required/>
+         <input class="form-control-sm" type="password" placeholder="password" ng-model="ctrl.loginForm.password" required/>
+         <input class="btn" type="submit" />
       </form>
 
       Register
-      <form ng-submit='ctrl.register()'>
-        <input type="text" placeholder="username" ng-model="ctrl.regForm.username" required/>
-         <input type="password" placeholder="password" ng-model="ctrl.regForm.password" required/>
-         <input type="submit"/>
+      <form ng-submit='ctrl.register()' class="form-group">
+        <input class="form-control-sm" type="text" placeholder="username" ng-model="ctrl.regForm.username" required/>
+         <input class="form-control-sm" type="password" placeholder="password" ng-model="ctrl.regForm.password" required/>
+         <input class="btn" type="submit"/>
       </form>
     </div>
 
@@ -36,7 +37,7 @@
           display chart here
         </div>
         <h1>Dailies</h1>
-        <table class="u-full-width">
+        <table class="table table-hover">
           <thead>
             <tr>
               <th>Date</th>
@@ -66,8 +67,8 @@
         <h2>Total intake: {{ctrl.showDaily.totalIntake}}</h2>
         <h3>Percentage to goal: {{ctrl.showDaily.percentageToGoal}}</h3>
 
-        <form ng-submit="ctrl.createInput()">
-          <table class="u-full-width">
+        <form ng-submit="ctrl.createInput()" class="form-group">
+          <table class="table">
             <thead>
               <tr>
                 <th>Time</th>
@@ -78,7 +79,7 @@
             <tbody>
               <tr>
                 <td>
-                  <select ng-model="ctrl.inputForm.time" required>
+                  <select ng-model="ctrl.inputForm.time" required class="form-control-sm">
                     <option value="12:00 a.m.">12:00 a.m. </option>
                     <option value="1:00 a.m.">1:00 a.m.</option>
                     <option value="2:00 a.m.">2:00 a.m.</option>
@@ -105,13 +106,13 @@
                     <option value="11:00 p.m.">11:00 p.m.</option>
                   </select>
                 </td>
-                <td><input type="number" placeholder="intake" ng-model="ctrl.inputForm.intake" required/></td>
-                <td><input type="submit"/></td>
+                <td><input class="form-control-sm" type="number" placeholder="intake" ng-model="ctrl.inputForm.intake" required/></td>
+                <td><input class="btn" type="submit"/></td>
               </tr>
             </tbody>
           </table>
         </form>
-        <table class="u-full-width">
+        <table class="table table-hover">
           <thead>
             <tr>
               <th>Time</th>
@@ -123,7 +124,7 @@
             <tr ng-repeat='input in ctrl.showDailyInputs'>
               <td>{{input.time}}</td>
               <td>{{input.intake}}oz.</td>
-              <td>x</td>
+              <td ng-click="ctrl.deleteInput(input)">x</td>
             </tr>
           </tbody>
         </table>
@@ -131,17 +132,17 @@
 
   <!--  ADD NEW PAGE -->
       <div class="showAdd" ng-if="ctrl.addPage">
-        <form ng-submit="ctrl.createDaily()"
+        <form ng-submit="ctrl.createDaily()" class="form-group">
           <label for="datePicker">Date:</label>
-          <input type="date" id="datePicker" ng-model="ctrl.dailyForm.date" required/>
+          <input class="form-control-sm" type="date" id="datePicker" ng-model="ctrl.dailyForm.date" required/>
 
           <label for="goal">Goal:</label>
-          <input type="number" id="goal" min="0" ng-model="ctrl.dailyForm.goal"  required/>
+          <input class="form-control-sm" type="number" id="goal" min="0" ng-model="ctrl.dailyForm.goal"  required/>
 
           <label for="startingIntake">Starting Intake:</label>
-          <input type="number" id="startingIntake" min="0" ng-model="ctrl.dailyForm.totalIntake" required/>
+          <input class="form-control-sm" type="number" id="startingIntake" min="0" ng-model="ctrl.dailyForm.totalIntake" required/>
 
-          <input type="submit"/>
+          <input class="btn" type="submit"/>
         </form>
       </div>
     </div>
