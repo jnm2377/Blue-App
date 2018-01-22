@@ -1,0 +1,42 @@
+/*==============GENERAL===================  */
+body {
+  background: #48ACF0;
+  color: white;
+}
+
+.btn{
+  background: #BAFF29;
+  color: #2A2B2E;
+  border: none;
+}
+
+input[type="submit"]:hover, input[type="submit"]:focus {
+  background:#2A2B2E;
+  color: #BAFF29;
+  border: none;
+}
+
+ .btn:focus, .btn:active, .form-control-sm:focus, .form-control-sm:active {
+   outline: 0;
+ }
+
+.fa {
+  color: #BAFF29;
+}
+
+/*==============NAV======================  */
+
+nav > ul {
+  display: inline;
+  list-style: none;
+}
+
+nav {
+  background: #2A2B2E;
+}
+
+
+
+/*==============LOGIN PAGE=================  */
+
+/*==============SHOW PAGE=================  */

@@ -6,11 +6,24 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://use.fontawesome.com/768456e386.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
   </head>
   <body ng-controller="MainController as ctrl">
 
+
+    <nav ng-if='ctrl.logged'>
+      <ul>
+        <li>
+          <i class="fa fa-home" aria-hidden="true"></i>
+        </li>
+        <li>
+          <i class="fa fa-info-circle" aria-hidden="true"></i>
+        </li>
+        <li ng-if='ctrl.logged' ng-click='ctrl.logout()'>Logout</li>
+      </ul>
+    </nav>
 <!--  LOGIN PAGE -->
     <div class="loginContainer" ng-if='ctrl.logged === false'>
       Login
@@ -37,24 +50,33 @@
           display chart here
         </div>
         <h1>Dailies</h1>
-        <table class="table table-hover">
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Goal</th>
-              <th>Total Intake</th>
-              <th>Delete</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr ng-repeat="daily in ctrl.allDailies" ng-click="ctrl.getOneDaily(daily._id)">
-              <td>{{daily.date}}</td>
-              <td>{{daily.goal}}oz.</td>
-              <td>{{daily.totalIntake}}oz.</td>
-              <td>x</td>
-            </tr>
-          </tbody>
-        </table>
+
+        <form ng-submit="ctrl.createDaily()" class="form-group">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Goal</th>
+                <th>Total Intake</th>
+                <th>Add/Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input class="form-control-sm" type="date" id="datePicker" ng-model="ctrl.dailyForm.date" required/></td>
+                <td><input class="form-control-sm" type="number" id="goal" min="0" ng-model="ctrl.dailyForm.goal"  required/></td>
+                <td><input class="form-control-sm" type="number" id="startingIntake" min="0" ng-model="ctrl.dailyForm.totalIntake" required/></td>
+                <td><input class="btn" type="submit"/></td>
+              </tr>
+              <tr ng-repeat='daily in ctrl.allDailies | orderBy: "-"' ng-click="ctrl.getOneDaily(daily._id)">
+                <td>{{daily.date}}</td>
+                <td>{{daily.goal}}oz.</td>
+                <td>{{daily.totalIntake}}oz.</td>
+                <td><i class="fa fa-times" aria-hidden="true"></i></td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
       </div>
 
 
@@ -68,12 +90,12 @@
         <h3>Percentage to goal: {{ctrl.showDaily.percentageToGoal}}</h3>
 
         <form ng-submit="ctrl.createInput()" class="form-group">
-          <table class="table">
+          <table class="table table-hover">
             <thead>
               <tr>
                 <th>Time</th>
                 <th>Intake</th>
-                <th>Add</th>
+                <th>Add/Delete</th>
               </tr>
             </thead>
             <tbody>
@@ -109,40 +131,13 @@
                 <td><input class="form-control-sm" type="number" placeholder="intake" ng-model="ctrl.inputForm.intake" required/></td>
                 <td><input class="btn" type="submit"/></td>
               </tr>
+              <tr ng-repeat='input in ctrl.showDailyInputs | orderBy: "-"'>
+                <td>{{input.time}}</td>
+                <td>{{input.intake}}oz.</td>
+                <td ng-click="ctrl.deleteInput(input)"><i class="fa fa-times" aria-hidden="true"></i></td>
+              </tr>
             </tbody>
           </table>
-        </form>
-        <table class="table table-hover">
-          <thead>
-            <tr>
-              <th>Time</th>
-              <th>Intake</th>
-              <th>Delete</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr ng-repeat='input in ctrl.showDailyInputs'>
-              <td>{{input.time}}</td>
-              <td>{{input.intake}}oz.</td>
-              <td ng-click="ctrl.deleteInput(input)">x</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-  <!--  ADD NEW PAGE -->
-      <div class="showAdd" ng-if="ctrl.addPage">
-        <form ng-submit="ctrl.createDaily()" class="form-group">
-          <label for="datePicker">Date:</label>
-          <input class="form-control-sm" type="date" id="datePicker" ng-model="ctrl.dailyForm.date" required/>
-
-          <label for="goal">Goal:</label>
-          <input class="form-control-sm" type="number" id="goal" min="0" ng-model="ctrl.dailyForm.goal"  required/>
-
-          <label for="startingIntake">Starting Intake:</label>
-          <input class="form-control-sm" type="number" id="startingIntake" min="0" ng-model="ctrl.dailyForm.totalIntake" required/>
-
-          <input class="btn" type="submit"/>
         </form>
       </div>
     </div>

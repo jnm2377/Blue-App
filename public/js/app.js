@@ -8,7 +8,6 @@ app.controller('MainController', ['$http', function($http) {
   this.logged = false;
   this.home = false;
   this.clickedDaily = false;
-  this.addPage = false;
   this.loginForm = {};
   this.regForm = {};
   this.allDailies = [];
@@ -105,7 +104,6 @@ app.controller('MainController', ['$http', function($http) {
       // console.log('Clicked on this day:', this.showDaily);
       // console.log('Show Daily data:', this.showDailyInputs);
       this.clickedDaily = true;
-      this.addPage = true;
       this.home = false;
     }).catch(err => console.error('Catch:', err));
   }
@@ -133,6 +131,9 @@ app.controller('MainController', ['$http', function($http) {
     this.updateDailyForm = {
       totalIntake: this.showDaily.totalIntake,
       percentageToGoal: this.showDaily.percentageToGoal
+
+      //add http route to create input
+      //nest http route to update daily in .then of create input
     }
   }
 
@@ -150,6 +151,9 @@ app.controller('MainController', ['$http', function($http) {
     }
 
     console.log('Updated daily:', this.updateDailyForm);
+
+    //add http route to delete input
+    //nest http route to update daily in .then of delete input
   }
 
 }]);
