@@ -2,6 +2,9 @@
 body {
   background: #48ACF0;
   color: white;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+
 }
 
 .btn{
@@ -20,19 +23,66 @@ input[type="submit"]:hover, input[type="submit"]:focus {
    outline: 0;
  }
 
+ input[type="number"] {
+   width: 50px;
+ }
+
+ .table, .form-control {
+   width: 50%;
+ }
+
 .fa {
   color: #BAFF29;
 }
 
 /*==============NAV======================  */
-
-nav > ul {
-  display: inline;
-  list-style: none;
+.home-nav{
+    background-color: #2A2B2E;
+    top: 10;
+    left: 10;
+    width: 50%;
+    margin: 10px auto;
+    position: fixed;
+    z-index: 1030;
+    max-height: 40px;
+    margin-bottom: 20px;
+    display: block;
 }
 
-nav {
-  background: #2A2B2E;
+.nav-links-container {
+  padding-left: 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+.navigation{
+  margin-top: 10px;
+  padding-left: 0;
+  font-size: 20px;
+}
+
+.navigation > li {
+  display: inline;
+  margin: 10px;
+}
+
+.navigation > li {
+  color: #fff;
+  background-color: transparent;
+  display: inline;
+  margin: 10px;
+  text-transform: uppercase;
+  padding: 4px;
+}
+
+.navigation > li:hover {
+  color: #BAFF29;
+  cursor: pointer;
+}
+
+.fa:hover {
+  color: white;
+  cursor: pointer;
 }
 
 
