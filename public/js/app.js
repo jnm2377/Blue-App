@@ -126,6 +126,19 @@ app.controller('MainController', ['$http', function($http) {
     }).catch(err => console.error('Catch', err));
   }
 
+  //DELETE DAILY
+  this.deleteDaily = (daily) => {
+    $http({
+      method: 'delete',
+      url: '/blue/' + daily._id
+    }).then(response => {
+      console.log(response.data);
+      const removeByIndex = this.allDailies.findIndex(item => item._id === daily._id);
+      this.allDailies.splice(removeByIndex, 1);
+    }).catch(err => console.error('Catch:', err));
+
+  }
+
   // ADD INPUT
   //   W/ NESTED UPDATE DAILY
   this.createInput = () => {
@@ -185,6 +198,7 @@ app.controller('MainController', ['$http', function($http) {
       method: 'delete',
       url: '/blue/input/' + input._id
     }).then(response => {
+      console.log(response.data);
       const removeByIndex = this.showDailyInputs.findIndex(item => item._id === input._id);
       this.showDailyInputs.splice(removeByIndex, 1);
 

@@ -88,7 +88,7 @@
                 <td>{{daily.date}}</td>
                 <td>{{daily.goal}} oz.</td>
                 <td>{{daily.totalIntake}} oz.</td>
-                <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                <td ng-click='ctrl.deleteDaily(daily)'><i class="fa fa-times" aria-hidden="true"></i></td>
               </tr>
             </tbody>
           </table>
