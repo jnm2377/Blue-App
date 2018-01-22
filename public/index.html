@@ -3,9 +3,10 @@
   <head>
     <meta charset="utf-8">
     <title>Blue</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
-  <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
   </head>
   <body ng-controller="MainController as ctrl">
 
@@ -27,29 +28,121 @@
     </div>
 
 
-<!--  INDEX PAGE -->
-    <div class="home" ng-if='ctrl.logged'>
-      <!-- <div class="chart">
-        display chart here
-      </div> -->
-      <h1>Dailies</h1>
-      <div class="dailies" ng-repeat="daily in ctrl.allDailies" ng-click="ctrl.getOneDaily(daily._id)">
-        <p>Date: {{daily.date}} | Goal: {{daily.goal}}oz. | Total intake: {{daily.totalIntake}}oz.</p>
+
+    <div class="container" ng-if='ctrl.logged'>
+      <!--  INDEX PAGE -->
+      <div class="home" ng-if='ctrl.home'>
+        <div class="chart">
+          display chart here
+        </div>
+        <h1>Dailies</h1>
+        <table class="u-full-width">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Goal</th>
+              <th>Total Intake</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="daily in ctrl.allDailies" ng-click="ctrl.getOneDaily(daily._id)">
+              <td>{{daily.date}}</td>
+              <td>{{daily.goal}}oz.</td>
+              <td>{{daily.totalIntake}}oz.</td>
+              <td>x</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    </div>
 
 
-<!--  SHOW PAGE -->
-    <div class="showDaily" ng-if='ctrl.clickedDaily'>
-      <!-- <div class="chart">
-        display chart here
-      </div> -->
-      <h2>Goal: {{ctrl.showDaily.goal}}oz</h2>
-      <h2>Total intake: {{ctrl.showDaily.totalIntake}}</h2>
-      <h3>Percentage to goal: {{ctrl.showDaily.percentageToGoal}}</h3>
+  <!--  SHOW PAGE -->
+      <div class="showDaily" ng-if='ctrl.clickedDaily'>
+        <div class="chart">
+          display chart here
+        </div>
+        <h2>Goal: {{ctrl.showDaily.goal}}oz</h2>
+        <h2>Total intake: {{ctrl.showDaily.totalIntake}}</h2>
+        <h3>Percentage to goal: {{ctrl.showDaily.percentageToGoal}}</h3>
 
-      <div class="inputs" ng-repeat='input in ctrl.showDailyInputs'>
-        <p>Time: {{input.time}} | Intake: {{input.intake}}oz.</p>
+        <form ng-submit="ctrl.createInput()">
+          <table class="u-full-width">
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Intake</th>
+                <th>Add</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <select ng-model="ctrl.inputForm.time" required>
+                    <option value="12:00 a.m.">12:00 a.m. </option>
+                    <option value="1:00 a.m.">1:00 a.m.</option>
+                    <option value="2:00 a.m.">2:00 a.m.</option>
+                    <option value="3:00 a.m.">3:00 a.m.</option>
+                    <option value="4:00 a.m.">4:00 a.m. </option>
+                    <option value="5:00 a.m.">5:00 a.m.</option>
+                    <option value="6:00 a.m.">6:00 a.m.</option>
+                    <option value="7:00 a.m.">7:00 a.m.</option>
+                    <option value="8:00 a.m.">8:00 a.m. </option>
+                    <option value="9:00 a.m.">9:00 a.m.</option>
+                    <option value="10:00 a.m.">10:00 a.m.</option>
+                    <option value="11:00 a.m.">11:00 a.m.</option>
+                    <option value="12:00 p.m.">12:00 p.m. </option>
+                    <option value="1:00 p.m.">1:00 p.m.</option>
+                    <option value="2:00 p.m.">2:00 p.m.</option>
+                    <option value="3:00 p.m.">3:00 p.m.</option>
+                    <option value="4:00 p.m.">4:00 p.m. </option>
+                    <option value="5:00 p.m.">5:00 p.m.</option>
+                    <option value="6:00 p.m.">6:00 p.m.</option>
+                    <option value="7:00 p.m.">7:00 p.m.</option>
+                    <option value="8:00 p.m.">8:00 p.m. </option>
+                    <option value="9:00 p.m.">9:00 p.m.</option>
+                    <option value="10:00 p.m.">10:00 p.m.</option>
+                    <option value="11:00 p.m.">11:00 p.m.</option>
+                  </select>
+                </td>
+                <td><input type="number" placeholder="intake" ng-model="ctrl.inputForm.intake" required/></td>
+                <td><input type="submit"/></td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+        <table class="u-full-width">
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Intake</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat='input in ctrl.showDailyInputs'>
+              <td>{{input.time}}</td>
+              <td>{{input.intake}}oz.</td>
+              <td>x</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+  <!--  ADD NEW PAGE -->
+      <div class="showAdd" ng-if="ctrl.addPage">
+        <form ng-submit="ctrl.createDaily()"
+          <label for="datePicker">Date:</label>
+          <input type="date" id="datePicker" ng-model="ctrl.dailyForm.date" required/>
+
+          <label for="goal">Goal:</label>
+          <input type="number" id="goal" min="0" ng-model="ctrl.dailyForm.goal"  required/>
+
+          <label for="startingIntake">Starting Intake:</label>
+          <input type="number" id="startingIntake" min="0" ng-model="ctrl.dailyForm.totalIntake" required/>
+
+          <input type="submit"/>
+        </form>
       </div>
     </div>
 

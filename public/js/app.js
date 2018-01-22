@@ -2,14 +2,22 @@ const app = angular.module('blue_app', []);
 
 app.controller('MainController', ['$http', function($http) {
 
+
+
   this.user = {};
   this.logged = false;
+  this.home = false;
+  this.clickedDaily = false;
+  this.addPage = false;
   this.loginForm = {};
   this.regForm = {};
   this.allDailies = [];
   this.showDaily = [];
   this.showDailyInputs = [];
-  this.clickedDaily = false;
+  this.dailyForm = {};
+  this.inputForm = {};
+  this.updateDailyForm = {};
+
 
   //CHECK TO SEE IF USER IS LOGGED IN
   $http({
@@ -20,6 +28,7 @@ app.controller('MainController', ['$http', function($http) {
       this.user = response.data.user;
       console.log(this.user);
       this.logged = true;
+      this.home = true;
       this.getDailies();
     }
   }).catch(err => console.error('Catch:', err));
@@ -34,6 +43,7 @@ app.controller('MainController', ['$http', function($http) {
       console.log(response.data);
       this.user = response.data;
       this.logged = true;
+      this.home = true;
       this.getDailies();
     }).catch(err => console.error('Catch:', err.message));
   }
@@ -50,6 +60,7 @@ app.controller('MainController', ['$http', function($http) {
 
       this.user = response.data;
       this.logged = true;
+      this.home = true;
       this.getDailies();
     }).catch( err => console.error('Catch:', err.message));
   }
@@ -61,6 +72,7 @@ app.controller('MainController', ['$http', function($http) {
       url: '/sessions/logout'
     }).then(response => {
       this.logged = false;
+      this.home = false;
       this.user = {};
     }).catch( err => console.error('Catch:', err.message));
   }
@@ -93,17 +105,49 @@ app.controller('MainController', ['$http', function($http) {
       // console.log('Clicked on this day:', this.showDaily);
       // console.log('Show Daily data:', this.showDailyInputs);
       this.clickedDaily = true;
+      this.addPage = true;
+      this.home = false;
     }).catch(err => console.error('Catch:', err));
   }
 
-  // this.getOneDaily();
-
-
   // ADD DAILY
+  this.createDaily = () => {
+    this.dailyForm.percentageToGoal = (this.dailyForm.totalIntake / this.dailyForm.goal) * 100;
+
+    this.dailyForm.user = this.user._id;
+
+    console.log(this.dailyForm);
+  }
+
   // ADD INPUT
   //   W/ NESTED UPDATE DAILY
+  this.createInput = () => {
+    this.inputForm.daily = this.showDaily._id;
+    this.inputForm.user = this.user._id;
+    this.showDaily.totalIntake = this.showDaily.totalIntake + this.inputForm.intake;
+    this.showDaily.percentageToGoal = (this.showDaily.totalIntake / this.showDaily.goal) * 100;
+    console.log(this.inputForm);
+    console.log('New total intake:', this.showDaily.totalIntake);
+    console.log('New percentage to goal:', this.showDaily.percentageToGoal);
+
+    this.updateDailyForm = {
+      totalIntake: this.showDaily.totalIntake,
+      percentageToGoal: this.showDaily.percentageToGoal
+    }
+  }
+
+
   // DELETE INPUT
   //   W/ NESTED UPDATE DAILY
   // DELETE DAILY
+  this.deleteInput = (input) => {
+    this.showDaily.totalIntake = this.showDaily.totalIntake - input.intake;
+    this.showDaily.percentageToGoal = (this.showDaily.totalIntake / this.showDaily.goal) * 100;
+
+    this.updateDailyForm = {
+      totalIntake: this.showDaily.totalIntake,
+      percentageToGoal: this.showDaily.percentageToGoal
+    }
+  }
 
 }]);
