@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>Blue</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-
+    <link href="https://fonts.googleapis.com/css?family=Homemade+Apple|Quicksand" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <script src="https://use.fontawesome.com/768456e386.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
@@ -61,6 +61,7 @@
     <div class="container" ng-if='ctrl.logged'>
       <!--  INDEX PAGE -->
       <div class="home" ng-if='ctrl.home'>
+        <h1 id="blue">Blue</h1>
         <div class="chart">
           display chart here
         </div>
@@ -85,8 +86,8 @@
               </tr>
               <tr ng-repeat='daily in ctrl.allDailies | orderBy: "-"' ng-click="ctrl.getOneDaily(daily._id)">
                 <td>{{daily.date}}</td>
-                <td>{{daily.goal}}oz.</td>
-                <td>{{daily.totalIntake}}oz.</td>
+                <td>{{daily.goal}} oz.</td>
+                <td>{{daily.totalIntake}} oz.</td>
                 <td><i class="fa fa-times" aria-hidden="true"></i></td>
               </tr>
             </tbody>
@@ -97,13 +98,14 @@
 
   <!--  SHOW PAGE -->
       <div class="showDaily" ng-if='ctrl.clickedDaily'>
+        <h1 id="showDailyTitle">{{ctrl.showDaily.date}}</h1>
         <div class="chart">
           display chart here
         </div>
         <div class="showTextContainer">
-          <h2>Goal: <span>{{ctrl.showDaily.goal}}oz</span></h2>
-          <h2>Total intake: <span>{{ctrl.showDaily.totalIntake}}</span></h2>
-          <h3>Percentage to goal: <span>{{ctrl.showDaily.percentageToGoal}}</span></h3>
+          <h2>Goal: <span>{{ctrl.showDaily.goal}} oz.</span></h2>
+          <h2>Total intake: <span>{{ctrl.showDaily.totalIntake}} oz.</span></h2>
+          <h3>Percentage to goal: <span>{{ctrl.showDaily.percentageToGoal}}%</span></h3>
         </div>
 
         <form ng-submit="ctrl.createInput()" class="form-group">
@@ -150,7 +152,7 @@
               </tr>
               <tr ng-repeat='input in ctrl.showDailyInputs | orderBy: "-"'>
                 <td>{{input.time}}</td>
-                <td>{{input.intake}}oz.</td>
+                <td>{{input.intake}} oz.</td>
                 <td ng-click="ctrl.deleteInput(input)"><i class="fa fa-times" aria-hidden="true"></i></td>
               </tr>
             </tbody>

@@ -2,6 +2,7 @@
 body {
   background: #48ACF0;
   color: white;
+  font-family: 'Quicksand', sans-serif;
 }
 
 .btn{
@@ -25,7 +26,7 @@ button:hover, button:focus {
  }
 
  .table, .form-control {
-   width: 500px;
+   width: 700px;
    margin: auto;
  }
 
@@ -99,6 +100,7 @@ nav {
 .loginContainer > h1 {
   margin: 0 auto;
   text-align: center;
+  font-family:'Homemade Apple', cursive;
 }
 
 .buttonContainer > button {
@@ -159,17 +161,24 @@ nav {
 }
 
 .chart {
-  width: 500px;
-  height: 300px;
+  width: 700px;
+  height: 400px;
   background: gray;
   margin: auto;
 }
 
 .home > h1 {
-  width: 500px;
+  width: 700px;
   text-align: left;
   margin: 20px auto;
   color: #BAFF29;
+}
+
+#blue {
+  font-family: 'Homemade Apple', cursive;
+  font-size: 100px;
+  text-align: center;
+  margin-bottom: 50px;
 }
 
 .home > form {
@@ -178,11 +187,22 @@ nav {
 
 /*==============SHOW PAGE=================  */
 .showTextContainer {
-  width: 500px;
+  width: 700px;
   margin: 20px auto;
   color: #BAFF29;
 }
 
 span {
   color: white;
+}
+
+#showDailyTitle {
+  width: 700px;
+  margin: 30px auto;
+  text-align: center;
+  font-family: 'Homemade Apple', cursive;
+}
+
+.showDaily > form {
+  margin-bottom: 100px;
 }
