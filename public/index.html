@@ -12,7 +12,7 @@
   </head>
   <body ng-controller="MainController as ctrl">
 
-    <div class="burger">
+    <div ng-if="ctrl.logged" class="burger">
       <p ng-click='ctrl.openNav()'><i class="fa fa-bars" aria-hidden="true"></i></p>
     </div>
 
@@ -21,29 +21,39 @@
         <p ng-click='ctrl.closeNav()'><i class="fa fa-times" aria-hidden="true"></i></p>
       </div>
       <ul class="nav-links">
-        <li>HOME</i>
-        </li>
-        <li>INFO
-        </li>
+        <li>HOME</li>
+        <li>INFO</li>
         <li ng-if='ctrl.logged' ng-click='ctrl.logout()'>LOGOUT</li>
       </ul>
     </nav>
 
 <!--  LOGIN PAGE -->
-    <div class="loginContainer" ng-if='ctrl.logged === false'>
-      Login
-      <form ng-submit='ctrl.login()' class="form-group">
-        <input class="form-control-sm" type="text" placeholder="username" ng-model="ctrl.loginForm.username" required/>
-         <input class="form-control-sm" type="password" placeholder="password" ng-model="ctrl.loginForm.password" required/>
-         <input class="btn" type="submit" />
-      </form>
+    <div class="loginPage" ng-if='ctrl.logged === false'>
+      <div class="loginContainer">
+        <h1>Welcome to Blue</h1>
+        <div class="buttonContainer">
+          <button ng-click='ctrl.showLogin()' class="btn">Login</button>
+          <button ng-click='ctrl.showRegister()' class="btn">Register</button>
+        </div>
 
-      Register
-      <form ng-submit='ctrl.register()' class="form-group">
-        <input class="form-control-sm" type="text" placeholder="username" ng-model="ctrl.regForm.username" required/>
-         <input class="form-control-sm" type="password" placeholder="password" ng-model="ctrl.regForm.password" required/>
-         <input class="btn" type="submit"/>
-      </form>
+        <div ng-if="ctrl.clickedLogin" class="login">
+          <h1>Login</h1>
+          <form ng-submit='ctrl.login()' class="form-group">
+            <input class="form-control-sm" type="text" placeholder="username" ng-model="ctrl.loginForm.username" required/>
+             <input class="form-control-sm" type="password" placeholder="password" ng-model="ctrl.loginForm.password" required/>
+             <button type="submit" class="btn loginBtn">Submit</button>
+          </form>
+        </div>
+
+        <div ng-if="ctrl.clickedRegister" class="login register">
+          <h1>Register</h1>
+          <form ng-submit='ctrl.register()' class="form-group">
+            <input class="form-control-sm" type="text" placeholder="username" ng-model="ctrl.regForm.username" required/>
+             <input class="form-control-sm" type="password" placeholder="password" ng-model="ctrl.regForm.password" required/>
+             <button type="submit" class="btn loginBtn registerBtn">Submit</button>
+          </form>
+        </div>
+      </div>
     </div>
 
 
@@ -71,7 +81,7 @@
                 <td><input class="form-control-sm" type="date" id="datePicker" ng-model="ctrl.dailyForm.date" required/></td>
                 <td><input class="form-control-sm" type="number" id="goal" min="0" ng-model="ctrl.dailyForm.goal"  required/></td>
                 <td><input class="form-control-sm" type="number" id="startingIntake" min="0" ng-model="ctrl.dailyForm.totalIntake" required/></td>
-                <td><input class="btn" type="submit"/></td>
+                <td><button type="submit" class="btn">Submit</button></td>
               </tr>
               <tr ng-repeat='daily in ctrl.allDailies | orderBy: "-"' ng-click="ctrl.getOneDaily(daily._id)">
                 <td>{{daily.date}}</td>
@@ -134,7 +144,7 @@
                   </select>
                 </td>
                 <td><input class="form-control-sm" type="number" placeholder="intake" ng-model="ctrl.inputForm.intake" required/></td>
-                <td><input class="btn" type="submit"/></td>
+                <td><button type="submit" class="btn">Submit</button></td>
               </tr>
               <tr ng-repeat='input in ctrl.showDailyInputs | orderBy: "-"'>
                 <td>{{input.time}}</td>

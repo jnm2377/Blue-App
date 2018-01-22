@@ -5,6 +5,8 @@ app.controller('MainController', ['$http', function($http) {
 
 
   this.user = {};
+  this.clickedLogin = false;
+  this.clickedRegister = false;
   this.logged = false;
   this.home = false;
   this.clickedDaily = false;
@@ -92,10 +94,6 @@ app.controller('MainController', ['$http', function($http) {
   }
 
 
-
-
-
-
   //GET ONE DAILY
   this.getOneDaily = (id) => {
     $http({
@@ -166,6 +164,16 @@ app.controller('MainController', ['$http', function($http) {
 
   this.closeNav = () => {
     this.clickedNav = false;
+  }
+
+  this.showLogin = () => {
+    this.clickedLogin = true;
+    this.clickedRegister = false;
+  }
+
+  this.showRegister = () => {
+    this.clickedLogin = false;
+    this.clickedRegister = true;
   }
 
 }]);

@@ -10,13 +10,13 @@ body {
   border: none;
 }
 
-input[type="submit"]:hover, input[type="submit"]:focus {
+button:hover, button:focus {
   background:#2A2B2E;
   color: #BAFF29;
   border: none;
 }
 
- .btn:focus, .btn:active, .form-control-sm:focus, .form-control-sm:active {
+ button:focus, button:active, .form-control-sm:focus, .form-control-sm:active {
    outline: 0;
  }
 
@@ -63,7 +63,6 @@ nav {
 }
 
 .nav-links {
-  /* border: 1px solid gold; */
   padding: 0;
   margin: 0;
   margin-top: 30px;
@@ -74,8 +73,6 @@ nav {
 
 .nav-links > li {
   list-style: none;
-  /* border: 1px solid pink; */
-  width: 200px;
   margin: 0 auto;
   text-align: center;
   font-size: 50px;
@@ -84,10 +81,70 @@ nav {
 
 .nav-links > li:hover {
   cursor: pointer;
-  color: #48ACF0;
+  background: #BAFF29;
+  color: #2A2B2E;
 }
 
 
 /*==============LOGIN PAGE=================  */
+.loginContainer {
+  margin: 20% auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.loginContainer > h1 {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.buttonContainer > button {
+  width: 100px;
+  margin: 10px;
+}
+
+.buttonContainer {
+  margin-top: 75px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.login {
+  width: 50%;
+  margin: 10px auto;
+  background: #2A2B2E;
+  border-radius: 5px 5px 0 0;
+}
+
+.login > h1 {
+  text-align: center;
+  color:  #48ACF0;
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+.loginBtn:hover, .loginBtn:focus, .loginBtn:active {
+  background: #48ACF0;
+}
+
+.register {
+  background: #BAFF29;
+}
+
+.registerBtn {
+  background: #2A2B2E;
+  color: white;
+}
+
+.login > form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login > form > input, .login > form > button {
+  margin: 10px;
+}
 
 /*==============SHOW PAGE=================  */
