@@ -30,10 +30,11 @@ router.post('/login', async (req, res) => {
 
 //DESTROY SESSION
 router.delete('/logout', (req, res) => {
+  console.log('Session is logged out: ', req.session);
   req.session.destroy(() => {
-    console.log('Session has been destroyed.');
+    console.log('session has been destroyed...');
+    res.status(200).json({message: 'Session destroyed'});
   });
-  req.status(200).json({message: 'Session has been destroyed.'});
 });
 
 module.exports = router;

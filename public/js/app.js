@@ -8,6 +8,7 @@ app.controller('MainController', ['$http', function($http) {
   this.logged = false;
   this.home = false;
   this.clickedDaily = false;
+  this.clickedNav = false;
   this.loginForm = {};
   this.regForm = {};
   this.allDailies = [];
@@ -70,8 +71,11 @@ app.controller('MainController', ['$http', function($http) {
       method: 'delete',
       url: '/sessions/logout'
     }).then(response => {
+      console.log(response.data);
       this.logged = false;
       this.home = false;
+      this.clickedDaily = false;
+      this.clickedNav = false;
       this.user = {};
     }).catch( err => console.error('Catch:', err.message));
   }
@@ -154,6 +158,14 @@ app.controller('MainController', ['$http', function($http) {
 
     //add http route to delete input
     //nest http route to update daily in .then of delete input
+  }
+
+  this.openNav = () => {
+    this.clickedNav = true;
+  }
+
+  this.closeNav = () => {
+    this.clickedNav = false;
   }
 
 }]);

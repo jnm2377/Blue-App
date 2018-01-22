@@ -12,20 +12,23 @@
   </head>
   <body ng-controller="MainController as ctrl">
 
-    <nav ng-if='ctrl.logged' class="home-nav">
-      <div class="nav-links-container">
-        <ul class="navigation">
-          <li>
-            <i class="fa fa-home" aria-hidden="true"></i>
-          </li>
-          <li>
-            <i class="fa fa-info-circle" aria-hidden="true"></i>
-          </li>
-          <li ng-if='ctrl.logged' ng-click='ctrl.logout()'>Logout</li>
-        </ul>
+    <div class="burger">
+      <p ng-click='ctrl.openNav()'><i class="fa fa-bars" aria-hidden="true"></i></p>
+    </div>
+
+    <nav ng-if='ctrl.clickedNav'>
+      <div class="burger">
+        <p ng-click='ctrl.closeNav()'><i class="fa fa-times" aria-hidden="true"></i></p>
       </div>
+      <ul class="nav-links">
+        <li>HOME</i>
+        </li>
+        <li>INFO
+        </li>
+        <li ng-if='ctrl.logged' ng-click='ctrl.logout()'>LOGOUT</li>
+      </ul>
     </nav>
-    
+
 <!--  LOGIN PAGE -->
     <div class="loginContainer" ng-if='ctrl.logged === false'>
       Login
