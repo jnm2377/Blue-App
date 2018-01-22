@@ -114,10 +114,16 @@ app.controller('MainController', ['$http', function($http) {
   // ADD DAILY
   this.createDaily = () => {
     this.dailyForm.percentageToGoal = (this.dailyForm.totalIntake / this.dailyForm.goal) * 100;
-
     this.dailyForm.user = this.user._id;
-
-    console.log(this.dailyForm);
+    // console.log(this.dailyForm);
+    $http({
+      method: 'post',
+      url: 'blue',
+      data: this.dailyForm
+    }).then(response => {
+      console.log('Create response:',response.data);
+      this.allDailies.push(response.data);
+    }).catch(err => console.error('Catch', err));
   }
 
   // ADD INPUT
@@ -127,19 +133,37 @@ app.controller('MainController', ['$http', function($http) {
     this.inputForm.user = this.user._id;
     this.showDaily.totalIntake = this.showDaily.totalIntake + this.inputForm.intake;
     this.showDaily.percentageToGoal = (this.showDaily.totalIntake / this.showDaily.goal) * 100;
-    console.log(this.inputForm);
+    // console.log(this.inputForm);
     console.log('New total intake:', this.showDaily.totalIntake);
     console.log('New percentage to goal:', this.showDaily.percentageToGoal);
 
     this.updateDailyForm = {
       totalIntake: this.showDaily.totalIntake,
       percentageToGoal: this.showDaily.percentageToGoal
-
+    }
       //add http route to create input
       //nest http route to update daily in .then of create input
-    }
-  }
+      $http({
+        method: 'post',
+        url: '/blue/input',
+        data: this.inputForm
+      }).then(response => {
+        console.log('Create Input response:', response.data);
+        this.showDailyInputs.push(response.data);
 
+        $http({
+          method: 'put',
+          url: '/blue/' + this.showDaily._id,
+          data: this.updateDailyForm
+        }).then(response => {
+          const updateByIndex = this.allDailies.findIndex(item => item._id === response.data._id);
+          this.allDailies.splice(updateByIndex, 1, response.data);
+          this.showDaily = this.allDailies[updateByIndex];
+          this.updateDailyForm = {};
+        }).catch(err => console.error('Catch:', err));
+
+      }).catch(err => console.error('Catch:', err));
+  }
 
   // DELETE INPUT
   //   W/ NESTED UPDATE DAILY
@@ -157,6 +181,25 @@ app.controller('MainController', ['$http', function($http) {
 
     //add http route to delete input
     //nest http route to update daily in .then of delete input
+    $http({
+      method: 'delete',
+      url: '/blue/input/' + input._id
+    }).then(response => {
+      const removeByIndex = this.showDailyInputs.findIndex(item => item._id === input._id);
+      this.showDailyInputs.splice(removeByIndex, 1);
+
+      $http({
+        method: 'put',
+        url: '/blue/' + this.showDaily._id,
+        data: this.updateDailyForm
+      }).then(response => {
+        const updateByIndex = this.allDailies.findIndex(item => item._id === response.data._id);
+        this.allDailies.splice(updateByIndex, 1, response.data);
+        this.showDaily = this.allDailies[updateByIndex];
+        this.updateDailyForm = {};
+      }).catch(err => console.error('Catch:', err));
+
+    }).catch(err => console.error('Catch:', err));
   }
 
   this.openNav = () => {

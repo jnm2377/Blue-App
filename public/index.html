@@ -73,13 +73,13 @@
               <tr>
                 <th>Date</th>
                 <th>Goal</th>
-                <th>Total Intake</th>
+                <th>Starting/Total Intake</th>
                 <th>Add/Delete</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td><input class="form-control-sm" type="date" id="datePicker" ng-model="ctrl.dailyForm.date" required/></td>
+                <td><input class="form-control-sm" type="date" ng-model="ctrl.dailyForm.date" required/></td>
                 <td><input class="form-control-sm" type="number" id="goal" min="0" ng-model="ctrl.dailyForm.goal"  required/></td>
                 <td><input class="form-control-sm" type="number" id="startingIntake" min="0" ng-model="ctrl.dailyForm.totalIntake" required/></td>
                 <td><button type="submit" class="btn">Submit</button></td>

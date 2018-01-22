@@ -22,7 +22,7 @@ button:hover, button:focus {
  }
 
  input[type="number"] {
-   width: 50px;
+   width: 75px;
  }
 
  .table, .form-control {
