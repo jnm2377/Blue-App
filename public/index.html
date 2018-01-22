@@ -17,7 +17,7 @@
       <p ng-click='ctrl.openNav()'><i class="fa fa-bars" aria-hidden="true"></i></p>
     </div>
 
-    <nav ng-if='ctrl.clickedNav'>
+    <nav ng-if='ctrl.clickedNav' class="flip-in-hor-bottom" id="nav">
       <div class="burger">
         <p ng-click='ctrl.closeNav()'><i class="fa fa-times" aria-hidden="true"></i></p>
       </div>
@@ -31,7 +31,7 @@
 <!--  LOGIN PAGE -->
     <div class="loginPage" ng-if='ctrl.logged === false'>
       <div class="loginContainer">
-        <h1 class="tracking-in-expand">Welcome to Blue</h1>
+        <h1 class="slide-in-top">Welcome to Blue</h1>
         <div class="buttonContainer">
           <button ng-click='ctrl.showLogin()' class="btn slide-in-left">Login</button>
           <button ng-click='ctrl.showRegister()' class="btn slide-in-right">Register</button>
@@ -62,13 +62,13 @@
     <div class="container" ng-if='ctrl.logged'>
       <!--  INDEX PAGE -->
       <div class="home" ng-if='ctrl.home'>
-        <h1 id="blue">Blue</h1>
-        <div class="chart">
+        <h1 id="blue" class="slide-in-right">Blue</h1>
+        <div class="chart slide-in-left">
           display chart here
         </div>
-        <h1>Dailies</h1>
+        <h1 class="slide-in-right">Dailies</h1>
 
-        <form ng-submit="ctrl.createDaily()" class="form-group">
+        <form ng-submit="ctrl.createDaily()" class="form-group slide-in-right">
           <table class="table table-hover">
             <thead>
               <tr>
