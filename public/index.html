@@ -99,17 +99,17 @@
 
   <!--  SHOW PAGE -->
       <div class="showDaily" ng-if='ctrl.clickedDaily'>
-        <h1 id="showDailyTitle">{{ctrl.showDaily.date}}</h1>
-        <div class="chart">
+        <h1 id="showDailyTitle" class="slide-in-left">{{ctrl.showDaily.date}}</h1>
+        <div class="chart slide-in-right">
           display chart here
         </div>
-        <div class="showTextContainer">
+        <div class="showTextContainer slide-in-left">
           <h2>Goal: <span>{{ctrl.showDaily.goal}} oz.</span></h2>
           <h2>Total intake: <span>{{ctrl.showDaily.totalIntake}} oz.</span></h2>
           <h3>Percentage to goal: <span>{{ctrl.showDaily.percentageToGoal}}%</span></h3>
         </div>
 
-        <form ng-submit="ctrl.createInput()" class="form-group">
+        <form ng-submit="ctrl.createInput()" class="form-group slide-in-right">
           <table class="table table-hover">
             <thead>
               <tr>
