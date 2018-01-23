@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/animations.css">
     <script src="https://use.fontawesome.com/768456e386.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js" language="JavaScript"></script>
     <script type="text/javascript" src="js/app.js"></script>
   </head>
   <body ng-controller="MainController as ctrl">
@@ -100,9 +101,23 @@
   <!--  SHOW PAGE -->
       <div class="showDaily" ng-if='ctrl.clickedDaily'>
         <h1 id="showDailyTitle" class="slide-in-left">{{ctrl.showDaily.date}}</h1>
+
+        <svg width="960" height="500"></svg>
+        <script>
+          var svg = d3.select("svg"),
+          margin = {top: 20, right: 20, bottom: 30, left: 40},
+          width = +svg.attr("width") - margin.left - margin.right,
+          height = +svg.attr("height") - margin.top - margin.bottom,
+          g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
+            d3.json( `http://localhost3000/blue/${ctrl.showDaily._id}`, );
+        </script>
+
         <div class="chart slide-in-right">
           display chart here
         </div>
+
         <div class="showTextContainer slide-in-left">
           <h2>Goal: <span>{{ctrl.showDaily.goal}} oz.</span></h2>
           <h2>Total intake: <span>{{ctrl.showDaily.totalIntake}} oz.</span></h2>
