@@ -160,13 +160,6 @@ nav {
   justify-content: center;
 }
 
-.chart {
-  width: 700px;
-  height: 400px;
-  background: gray;
-  margin: auto;
-}
-
 .home > h1 {
   width: 700px;
   text-align: left;
@@ -181,11 +174,30 @@ nav {
   margin-bottom: 50px;
 }
 
+.chart1 {
+  width: 700px;
+  height: 400px;
+  background: none;
+  margin: 10px auto;
+}
+
 .home > form {
   margin-bottom: 100px;
 }
 
 /*==============SHOW PAGE=================  */
+.chartRow {
+  width: 700px;
+  margin: auto;
+}
+
+.chart2 {
+  width: 330px;
+  height: 400px;
+  background: none;
+  margin: 10px auto;
+}
+
 .showTextContainer {
   width: 700px;
   margin: 20px auto;

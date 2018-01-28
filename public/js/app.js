@@ -1,4 +1,4 @@
-const app = angular.module('blue_app', ["highcharts-ng"]);
+const app = angular.module('blue_app', ["highcharts-ng", "chart.js"]);
 
 
 app.controller('MainController', ['$http', '$scope', function($http, $scope) {
@@ -21,6 +21,51 @@ app.controller('MainController', ['$http', '$scope', function($http, $scope) {
   this.dailyForm = {};
   this.inputForm = {};
   this.updateDailyForm = {};
+
+  this.chartIndex = () => {
+
+  $scope.colors = [ "#BAFF29", "#ffffff"]
+  $scope.labels = this.allDailies.map(obj => obj.date);
+  $scope.series = ['Daily Goal', 'Daily Total Intake'];
+  $scope.data = [
+    this.allDailies.map(obj => obj.goal),
+    this.allDailies.map(obj => obj.totalIntake)
+  ];
+  $scope.onClick = function (points, evt) {
+    console.log(points, evt);
+  };
+  $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }, { yAxisID: 'y-axis-1' }];
+  $scope.options = {
+    scales: {
+      yAxes: [
+        {
+          id: 'y-axis-1',
+          type: 'linear',
+          display: true,
+          min: 0,
+          position: 'left',
+          scaleLabel: {
+            labelString: 'Your drinking trends',
+            display: true,
+            fontColor: "#BAFF29",
+            fontSize: 20,
+          },
+          ticks: {
+            callback: function(value, index, values) {
+                        return value + ' oz.';
+                      }
+                  }
+        },
+        {
+          id: 'y-axis-2',
+          type: 'linear',
+          display: false,
+          min: 0,
+          position: 'right'
+        }]
+      }
+    }
+  }
 
 
   this.chartDaily2 = () => {
@@ -118,7 +163,7 @@ app.controller('MainController', ['$http', '$scope', function($http, $scope) {
   this.chartDaily = () => {
     $scope.chart1Config = {
       chart: {
-        type: 'bar'
+        type: 'column'
       },
       series: [{
             name: 'Goal',
@@ -210,6 +255,7 @@ app.controller('MainController', ['$http', '$scope', function($http, $scope) {
     }).then(response => {
       // console.log(response.data);
       this.allDailies = response.data.userDailies;
+      this.chartIndex();
     }).catch(err => console.error('Catch:', err));
   }
 
