@@ -222,6 +222,9 @@ app.controller('MainController', ['$http', '$scope', function($http, $scope) {
       console.log('Create response:',response.data);
       this.allDailies.push(response.data);
       this.chartIndex();
+      this.dailyForm = {};
+      $scope.dailyForm.$setUntouched();
+      $scope.dailyForm.$setPristine();
     }).catch(err => console.error('Catch', err));
   }
 
