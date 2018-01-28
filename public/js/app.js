@@ -221,6 +221,7 @@ app.controller('MainController', ['$http', '$scope', function($http, $scope) {
     }).then(response => {
       console.log('Create response:',response.data);
       this.allDailies.push(response.data);
+      this.chartIndex();
     }).catch(err => console.error('Catch', err));
   }
 
@@ -233,6 +234,7 @@ app.controller('MainController', ['$http', '$scope', function($http, $scope) {
       console.log(response.data);
       const removeByIndex = this.allDailies.findIndex(item => item._id === daily._id);
       this.allDailies.splice(removeByIndex, 1);
+      this.chartIndex();
     }).catch(err => console.error('Catch:', err));
 
   }
@@ -271,6 +273,10 @@ app.controller('MainController', ['$http', '$scope', function($http, $scope) {
           this.allDailies.splice(updateByIndex, 1, response.data);
           this.showDaily = this.allDailies[updateByIndex];
           this.updateDailyForm = {};
+
+          this.chartIndex();
+          this.chartDaily();
+          this.chartDaily2();
         }).catch(err => console.error('Catch:', err));
 
       }).catch(err => console.error('Catch:', err));
@@ -309,6 +315,10 @@ app.controller('MainController', ['$http', '$scope', function($http, $scope) {
         this.allDailies.splice(updateByIndex, 1, response.data);
         this.showDaily = this.allDailies[updateByIndex];
         this.updateDailyForm = {};
+
+        this.chartIndex();
+        this.chartDaily();
+        this.chartDaily2();
       }).catch(err => console.error('Catch:', err));
 
     }).catch(err => console.error('Catch:', err));
