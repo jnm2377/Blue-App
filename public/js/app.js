@@ -267,6 +267,8 @@ app.controller('MainController', ['$http', '$scope', function($http, $scope) {
         console.log('Create Input response:', response.data);
         this.showDailyInputs.push(response.data);
 
+
+
         $http({
           method: 'put',
           url: '/blue/' + this.showDaily._id,
@@ -280,6 +282,10 @@ app.controller('MainController', ['$http', '$scope', function($http, $scope) {
           this.chartIndex();
           this.chartDaily();
           this.chartDaily2();
+
+          this.inputForm = {};
+          $scope.inputForm.$setUntouched();
+          $scope.inputForm.$setPristine();
         }).catch(err => console.error('Catch:', err));
 
       }).catch(err => console.error('Catch:', err));
