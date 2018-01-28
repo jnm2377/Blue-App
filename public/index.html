@@ -20,7 +20,7 @@
     <!-- HIGHCHARTS DIRECTIVE -->
     <script src="https://rawgithub.com/pablojim/highcharts-ng/master/src/highcharts-ng.js"></script>
     <!--  CHART.JS CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.js"></script>
     <!--  ANGULAR CHART.JS -->
     <script src="js/angular-chart.min.js"></script>
     <!--  MY APP/ANGULAR CONTROLLER SCRIPT-->
@@ -125,13 +125,31 @@
       <div class="showDaily" ng-if='ctrl.clickedDaily'>
         <h1 id="showDailyTitle" class="slide-in-left">{{ctrl.showDaily.date}}</h1>
 
-
         <div class="row chartRow">
-          <highchart id="chart1" config="chart1Config" class="chart2 slide-in-right"></highchart>
-          <highchart id="chart2" config="chartConfig" class="chart2 slide-in-right"></highchart>
+          <canvas id="bar"
+            class="chart chart-bar"
+            chart-data="data3"
+            chart-labels="labels3"
+            chart-series="series3"
+            chart-options="options3"
+            chart-colors="colors"
+            chart-click="onClick">
+          </canvas>
+
+
+          <canvas id="doughnut"
+            class="chart chart-pie"
+            chart-data="data2"
+            chart-labels="labels2"
+            chart-colors="colors"
+            chart-click="onClick">
+          </canvas>
         </div>
 
-
+        <!-- <div class="row chartRow">
+          <highchart id="chart1" config="chart1Config" class="chart2 slide-in-right"></highchart>
+          <highchart id="chart2" config="chartConfig" class="chart2 slide-in-right"></highchart>
+        </div> -->
 
         <div class="showTextContainer slide-in-left">
           <h2>Goal: <span>{{ctrl.showDaily.goal}} oz.</span></h2>

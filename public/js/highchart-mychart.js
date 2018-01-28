@@ -95,3 +95,126 @@ this.chartIndex = () => {
   };
   console.log('this is your chart data', $scope.chart3Config.series[0].data);
 }
+
+
+
+// ============================SHOW PAGE CHARTS
+this.chartDaily2 = () => {
+  let colors = Highcharts.getOptions().colors,
+  categories = ['Progress Update'],
+  data = [{
+      color: colors[0],
+      drilldown: {
+          name: 'Percentage to Goal',
+          categories: ['Goal Achieved', 'Goal Remainding'],
+          data: [this.showDaily.percentageToGoal, (100 - this.showDaily.percentageToGoal)],
+          color: colors[0]
+      }
+  }],
+  browserData = [],
+  versionsData = [],
+  i,
+  j,
+  dataLen = data.length,
+  drillDataLen,
+  brightness;
+
+
+  // Build the data arrays
+  for (i = 0; i < dataLen; i += 1) {
+
+      // add browser data
+      browserData.push({
+          name: categories[i],
+          y: data[i].y,
+          color: data[i].color
+      });
+
+      // add version data
+      drillDataLen = data[i].drilldown.data.length;
+      for (j = 0; j < drillDataLen; j += 1) {
+          brightness = 0.2 - (j / drillDataLen) / 5;
+          versionsData.push({
+              name: data[i].drilldown.categories[j],
+              y: data[i].drilldown.data[j],
+              color: Highcharts.Color(data[i].color).brighten(brightness).get()
+          });
+      }
+  }
+
+// Create the chart
+  $scope.chartConfig = {
+    chart: {
+        type: 'pie'
+    },
+    title: {
+        text: 'Daily Progress Update'
+    },
+    plotOptions: {
+        pie: {
+            shadow: false,
+            center: ['50%', '50%']
+        }
+    },
+    tooltip: {
+        valueSuffix: '%'
+    },
+    series: [{
+        name: 'Water intake',
+        data: versionsData,
+        size: '80%',
+        innerSize: '60%',
+        dataLabels: {
+            formatter: function () {
+                // display only if larger than 1
+                return this.y > 1 ? '<b>' + this.point.name + ':</b> ' +
+                    this.y + '%' : null;
+            }
+        },
+        id: 'versions'
+    }],
+    responsive: {
+        rules: [{
+            condition: {
+                maxWidth: 400
+            },
+            chartOptions: {
+                series: [{
+                    id: 'versions',
+                    dataLabels: {
+                        enabled: false
+                    }
+                }]
+            }
+        }]
+    }
+  };
+}
+
+
+// =========================================
+this.chartDaily = () => {
+  $scope.chart1Config = {
+    chart: {
+      type: 'column'
+    },
+    series: [{
+          name: 'Goal',
+          data: [this.showDaily.goal]
+      }, {
+          name: 'Total Intake',
+          data: [this.showDaily.totalIntake]
+      }],
+    title: {
+      text: 'Your Drinking Progress'
+    },
+    xAxis: [ {
+          categories: ['Daily Data']
+      }],
+    yAxis: [{ // Primary yAxis
+      title: {
+        text: 'Number of ounces',
+      }
+    }]
+  };
+}
