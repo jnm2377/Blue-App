@@ -359,12 +359,15 @@ app.controller('MainController', ['$http', '$scope', function($http, $scope) {
 
   }
 
-  this.seeInfo = () => {
-    console.log('Need to create info page');
-    // this.clickedNav = false;
-    // this.home = false;
-    // this.clickedDaily = false;
-    // this.clickedInfo = true;
+  this.openModal = () => {
+    console.log('INFO MODAL! BAM!');
+    this.clickedNav = false;
+    this.clickedInfo = true;
+  }
+
+  this.closeModal = () => {
+    console.log('Closed Modal');
+    this.clickedInfo = false;
   }
 
 }]);

@@ -88,6 +88,47 @@ nav {
   color: #2A2B2E;
 }
 
+/*==============INFO MODAL=================  */
+
+.transparentContainer {
+  position: fixed;
+  overflow: auto;
+  z-index: 3000;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+
+
+
+}
+
+.modal {
+  background: rgba(186, 255, 41, 0.7);
+  height: 90%;
+  margin: 30px auto;
+  display: block;
+  border-radius: 5px;
+  color: #2A2B2E;
+}
+
+#infoClose {
+  margin-top: 10px;
+}
+
+#infoClose > .fa {
+  color: #2A2B2E;
+}
+
+#infoClose > .fa:hover {
+  color:#48ACF0;
+}
+
+.modalCont {
+  max-width: 700px;
+  margin: 70px auto;
+}
+
 
 /*==============LOGIN PAGE=================  */
 .loginContainer {
@@ -215,7 +256,7 @@ span {
   margin-bottom: 100px;
 }
 
-/* MEDIA QUERIES============================ */
+/* ================MEDIA QUERIES================= */
 @media (max-width: 800px) {
   .burger >p {
     margin-left: 92%;

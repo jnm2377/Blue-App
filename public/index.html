@@ -30,7 +30,7 @@
 
   <body ng-controller="MainController as ctrl">
 
-    <div ng-if="ctrl.logged" class="burger">
+    <div class="burger">
       <p ng-click='ctrl.openNav()'><i class="fa fa-bars" aria-hidden="true"></i></p>
     </div>
 
@@ -39,11 +39,28 @@
         <p ng-click='ctrl.closeNav()'><i class="fa fa-times" aria-hidden="true"></i></p>
       </div>
       <ul class="nav-links">
-        <li ng-click='ctrl.goHome()'>HOME</li>
-        <li ng-click='ctrl.seeInfo()'>INFO</li>
+        <li ng-if='ctrl.logged' ng-click='ctrl.goHome()'>HOME</li>
+        <li ng-click='ctrl.openModal()'>INFO</li>
         <li ng-if='ctrl.logged' ng-click='ctrl.logout()'>LOGOUT</li>
       </ul>
     </nav>
+
+<!--  INFO MODAL -->
+    <div ng-if="ctrl.clickedInfo" class="transparentContainer">
+      <div class="modal container">
+        <div id="infoClose" ng-click="ctrl.closeModal()"><i class="fa fa-times"></i></div>
+        <h2 class="text-center">About the App</h2>
+        <div class="container modalCont">
+          <p class="text-left">Blue is an app that tracks your hydration. It is designed for anyone looking to improve their health and stay accountable to their goals.</p>
+
+          <p class="text-left">The way this works is simple. <b>First,</b> create an account. <b>Second,</b> create a daily entry. Your daily entries will keep you accountable day by day to see if you're reaching your water intake goal. <b>Lastly,</b> when you drink water through out the day, go to you daily entry by clicking on the entry date in the home page table, then input how much you drank to see your progress.</p>
+
+          <p class="text-left">Each time you create a daily entry, you will see it added to your home page chart. This chart will help you keep track of your drinking trends.</p>
+
+          <p><i>Important things to know: your water intake is measured in ounces. When you create and entry, only input the numbers.</i></p>
+        </div>
+      </div>
+    </div>
 
 <!--  LOGIN PAGE -->
     <div class="loginPage" ng-if='ctrl.logged === false'>
