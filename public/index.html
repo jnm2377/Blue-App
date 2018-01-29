@@ -118,7 +118,7 @@
                 <th>Date</th>
                 <th>Goal</th>
                 <th>Starting/Total Intake</th>
-                <th>Add/Delete</th>
+                <th class="delete">Add/Delete</th>
               </tr>
             </thead>
             <tbody>
@@ -126,7 +126,7 @@
                 <td><input class="form-control-sm" type="text" placeholder="11/22/18" ng-model="ctrl.dailyForm.date" required/></td>
                 <td><input class="form-control-sm" type="number" id="goal" min="0" ng-model="ctrl.dailyForm.goal"  required/></td>
                 <td><input class="form-control-sm" type="number" id="startingIntake" min="0" ng-model="ctrl.dailyForm.totalIntake" required/></td>
-                <td><button type="submit" class="btn">Submit</button></td>
+                <td class="delete"><button type="submit" class="btn">Submit</button></td>
               </tr>
               <tr ng-repeat='daily in ctrl.allDailies | orderBy: "-"' ng-click="ctrl.getOneDaily(daily._id)">
                 <td>{{daily.date}}</td>
@@ -183,7 +183,7 @@
               <tr>
                 <th>Time</th>
                 <th>Intake</th>
-                <th>Add/Delete</th>
+                <th class="delete">Add/Delete</th>
               </tr>
             </thead>
             <tbody>
@@ -217,7 +217,7 @@
                   </select>
                 </td>
                 <td><input class="form-control-sm" type="number" placeholder="intake" ng-model="ctrl.inputForm.intake" required/></td>
-                <td><button type="submit" class="btn">Submit</button></td>
+                <td class="delete"><button type="submit" class="btn">Submit</button></td>
               </tr>
               <tr ng-repeat='input in ctrl.showDailyInputs | orderBy: "-"'>
                 <td>{{input.time}}</td>
