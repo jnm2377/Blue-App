@@ -105,6 +105,7 @@ nav {
 
 .modal {
   background: rgba(186, 255, 41, 0.7);
+  overflow: auto;
   height: 90%;
   margin: 30px auto;
   display: block;

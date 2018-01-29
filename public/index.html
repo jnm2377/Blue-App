@@ -30,10 +30,12 @@
 
   <body ng-controller="MainController as ctrl">
 
+<!-- BURGER NAV TOGGLE -->
     <div class="burger">
       <p ng-click='ctrl.openNav()'><i class="fa fa-bars" aria-hidden="true"></i></p>
     </div>
 
+<!--  NAV PAGE -->
     <nav ng-if='ctrl.clickedNav'  id="nav">
       <div class="burger">
         <p ng-click='ctrl.closeNav()'><i class="fa fa-times" aria-hidden="true"></i></p>
@@ -128,10 +130,10 @@
                 <td><input class="form-control-sm" type="number" id="startingIntake" min="0" ng-model="ctrl.dailyForm.totalIntake" required/></td>
                 <td class="delete"><button type="submit" class="btn">Submit</button></td>
               </tr>
-              <tr ng-repeat='daily in ctrl.allDailies | orderBy: "-"' ng-click="ctrl.getOneDaily(daily._id)">
-                <td>{{daily.date}}</td>
-                <td>{{daily.goal}} oz.</td>
-                <td>{{daily.totalIntake}} oz.</td>
+              <tr ng-repeat='daily in ctrl.allDailies | orderBy: "-"' >
+                <td ng-click="ctrl.getOneDaily(daily._id)">{{daily.date}}</td>
+                <td ng-click="ctrl.getOneDaily(daily._id)">{{daily.goal}} oz.</td>
+                <td ng-click="ctrl.getOneDaily(daily._id)">{{daily.totalIntake}} oz.</td>
                 <td ng-click='ctrl.deleteDaily(daily)' class="delete"><i class="fa fa-times" aria-hidden="true"></i></td>
               </tr>
             </tbody>
