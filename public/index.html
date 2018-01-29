@@ -79,7 +79,7 @@
     <div class="container" ng-if='ctrl.logged'>
       <!--  INDEX PAGE -->
       <div class="home" ng-if='ctrl.home'>
-        <h1 id="blue" class="slide-in-right">Blue</h1>
+        <h1 id="blue" class="slide-in-right container">Blue</h1>
 
         <canvas id="chart1"
           class="chart chart-line"
@@ -115,7 +115,7 @@
                 <td>{{daily.date}}</td>
                 <td>{{daily.goal}} oz.</td>
                 <td>{{daily.totalIntake}} oz.</td>
-                <td ng-click='ctrl.deleteDaily(daily)'><i class="fa fa-times" aria-hidden="true"></i></td>
+                <td ng-click='ctrl.deleteDaily(daily)' class="delete"><i class="fa fa-times" aria-hidden="true"></i></td>
               </tr>
             </tbody>
           </table>
@@ -125,9 +125,9 @@
 
   <!--  SHOW PAGE -->
       <div class="showDaily" ng-if='ctrl.clickedDaily'>
-        <h1 id="showDailyTitle" class="slide-in-left">{{ctrl.showDaily.date}}</h1>
+        <h1 id="showDailyTitle" class="slide-in-left container">{{ctrl.showDaily.date}}</h1>
 
-        <div class="row chartRow">
+        <div class="chartRow container">
           <canvas id="bar"
             class="chart chart-bar"
             chart-data="data3"
@@ -205,7 +205,7 @@
               <tr ng-repeat='input in ctrl.showDailyInputs | orderBy: "-"'>
                 <td>{{input.time}}</td>
                 <td>{{input.intake}} oz.</td>
-                <td ng-click="ctrl.deleteInput(input)"><i class="fa fa-times" aria-hidden="true"></i></td>
+                <td ng-click="ctrl.deleteInput(input)" class="delete"><i class="fa fa-times" aria-hidden="true"></i></td>
               </tr>
             </tbody>
           </table>

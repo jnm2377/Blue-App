@@ -26,7 +26,7 @@ button:hover, button:focus {
  }
 
  .table, .form-control {
-   width: 700px;
+   max-width: 700px;
    margin: auto;
  }
 
@@ -78,7 +78,7 @@ nav {
   margin: 0 auto;
   text-align: center;
   font-size: 50px;
-  height: 100px;
+  padding: 30px;
   border-bottom: 1px dotted  rgba(186, 255, 41, 0.2);
 }
 
@@ -161,7 +161,6 @@ nav {
 }
 
 .home > h1 {
-  width: 700px;
   text-align: left;
   margin: 20px auto;
   color: #BAFF29;
@@ -185,15 +184,19 @@ nav {
   margin-bottom: 100px;
 }
 
+.delete {
+  text-align: center;
+}
+
 /*==============SHOW PAGE=================  */
 .chartRow {
-  width: 700px;
+  max-width: 700px;
   margin: auto;
 }
 
 
 .showTextContainer {
-  width: 700px;
+  max-width: 700px;
   margin: 20px auto;
   color: #BAFF29;
 }
@@ -203,7 +206,6 @@ span {
 }
 
 #showDailyTitle {
-  width: 700px;
   margin: 30px auto;
   text-align: center;
   font-family: 'Homemade Apple', cursive;
@@ -211,4 +213,35 @@ span {
 
 .showDaily > form {
   margin-bottom: 100px;
+}
+
+/* MEDIA QUERIES============================ */
+@media (max-width: 800px) {
+  .burger >p {
+    margin-left: 92%;
+
+  }
+}
+
+@media (max-width: 700px) {
+  #blue {
+    font-size: 50px;
+}
+
+@media (max-width: 490px) {
+  form {
+    font-size: 15px;
+  }
+  input[type="number"] {
+    width: 50px;
+  }
+
+  input[type="text"] {
+    width: 50px;
+  }
+
+  button {
+    width: 80px;
+  }
+
 }
