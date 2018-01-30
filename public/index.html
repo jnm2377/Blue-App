@@ -176,7 +176,7 @@
         <div class="showTextContainer slide-in-left">
           <h2>Goal: <span>{{ctrl.showDaily.goal}} oz.</span></h2>
           <h2>Total intake: <span>{{ctrl.showDaily.totalIntake}} oz.</span></h2>
-          <h3>Percentage to goal: <span>{{ctrl.showDaily.percentageToGoal}}%</span></h3>
+          <h3>Percentage to goal: <span>{{ctrl.showDaily.percentageToGoal | limitTo: 5}}%</span></h3>
         </div>
 
         <form name="inputForm" ng-submit="ctrl.createInput()" class="form-group slide-in-right">
