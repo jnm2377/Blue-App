@@ -37,13 +37,13 @@ I utilized the Heroku cloud platform to deploy my application model. To view it 
 * **Mongo** - *Used to create and manage the data.*
 * **HTML** - *Used with angular.*
 * **JavaScript** - *Used with Angular and Express.*
-* **[Chart.js](http://www.chartjs.org/docs/latest/)** - *Used with Angular and Express.*
-* **[Angular-Chart.js](http://jtblin.github.io/angular-chart.js/#getting_started)** - *Used with Angular and Express.*
-* **CSS** - *Used to add style the pages.*
-* **[Bootstrap](https://getbootstrap.com/)** - *Used to add style the pages.*
+* **[Chart.js](http://www.chartjs.org/docs/latest/)** - *Used for frontend data visualization.*
+* **[Angular-Chart.js](http://jtblin.github.io/angular-chart.js/#getting_started)** - *Used for Angular and Chart.js.*
+* **CSS** - *Used to style the pages.*
+* **[Bootstrap](https://getbootstrap.com/)** - *Used to style the pages.*
 * **[Animista](http://animista.net/)** - *Used to add CSS animations.*
-* **Atom** - *Used as our text editor.*
-* **Heroku** - *Used to deploy our app.*
+* **Atom** - *Used as text editor.*
+* **Heroku** - *Used to deploy app.*
 * **[Font Awesome](http://fontawesome.io/)** - *Used for glyphicons on buttons.*
 
 
