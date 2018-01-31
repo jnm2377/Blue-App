@@ -5,6 +5,11 @@ The way this works is simple. First, create an account. Second, create a daily e
 
 Each time you create a daily entry, you will see it added to your home page chart. This chart will help you keep track of your drinking trends.
 
+![Login Page](public/assets/login.png)
+
+![Home Page ](public/assets/home.png)
+
+![Navigation](public/assets/nav.png)
 
 ## Getting Started
 
